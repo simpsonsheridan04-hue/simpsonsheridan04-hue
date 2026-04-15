@@ -14,5 +14,5 @@ I'm Sheridan, a data-driven professional with a background in program management
 | Project Name | Platform | Link |
 | ------------ | -------- |----- |
 | Marvel Movie Analysis | R | link |
-| Animal Crossing Villagers | Python | link |
+| Animal Crossing Villagers | Python | Python_Portfolio_ACNH.ipynb |
 | Amazon Kindle Book Analysis | SQL | link
