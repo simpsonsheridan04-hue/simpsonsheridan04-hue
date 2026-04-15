@@ -14,5 +14,5 @@ I'm Sheridan, a data-driven professional with a background in program management
 | Project Name | Platform | Link |
 | ------------ | -------- |----- |
 | Marvel Movie Analysis | R | [marvel_movie_analysis](https://www.kaggle.com/code/sheridansimpson/marvel-movie-analysis) |
-| Animal Crossing Villagers | Python | [ANNH_villager_analysis](https://www.kaggle.com/code/sheridansimpson/acnh-villager-analysis) |
+| Animal Crossing Villagers | Python | [ACNH_villager_analysis](https://www.kaggle.com/code/sheridansimpson/acnh-villager-analysis) |
 | Amazon Kindle Book Analysis | SQL | link
