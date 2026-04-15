@@ -13,6 +13,6 @@ I'm Sheridan, a data-driven professional with a background in program management
 
 | Project Name | Platform | Link |
 | ------------ | -------- |----- |
-| Marvel Movie Analysis | R | link |
+| Marvel Movie Analysis | R | [R_Portfolio_Marvel.ipynb](https://github.com/simpsonsheridan04-hue/simpsonsheridan04-hue/blob/main/R_Portfolio_Marvel.ipynb) |
 | Animal Crossing Villagers | Python | [Python_Portfolio_ACNH.ipynb](https://github.com/simpsonsheridan04-hue/simpsonsheridan04-hue/blob/main/Python_Portfolio_ACNH.ipynb) |
 | Amazon Kindle Book Analysis | SQL | link
