@@ -2,16 +2,28 @@
 
 ## Table of Contents
 * [Data](#data)
-* [Inspection and Cleaning]
-* [Data Observations]
-* [Exploratory Data Analysis]
-  * [Publisher]
-  * [Pricing]
-  * [Author Analysis]
-  * [Kindle Unlimited (KU) Analysis]
-  * [Book Ratings]
-* [Conclusions]
-* [Visuals] 
+* [Inspection and Cleaning](#inspection-and-cleaning)
+  * [ASIN](#asin)
+  * [Title](#title)
+  * [Author](#author)
+  * [SoldBy](#soldby)
+  * [Review Amounts and Stars](#review-amounts-and-stars)
+  * [Price](#price)
+  * [Kindle Unlimited](#kindle-unlimited-status)
+  * [Best Seller](#best-seller-status)
+  * [Editor's Pick](#editors-pick-status)
+  * [Good Read's Choice](#good-reads-choice-status)
+  * [Category](#category)
+  * [Published Date](#published-date)
+* [Data Observations](#observations)
+* [Exploratory Data Analysis](#exploratory-data-analysis)
+  * [Publisher](#publisher)
+  * [Pricing](#pricing)
+  * [Author Analysis](#author-analysis)
+  * [Kindle Unlimited (KU) Analysis](#kindle-unlimited-ku-analysis)
+  * [Book Ratings](#book-ratings)
+* [Conclusions](#conclusions)
+* [Visuals](#visuals) 
 
 ## Data 
 This data was gathered from Kaggle.
@@ -356,6 +368,8 @@ FROM [kindle_data_2023 ]
 GROUP BY 1;
 ```
 
+### Category
+
 ```sql
 -- Check for null category values
 SELECT *
@@ -385,6 +399,8 @@ UPDATE [kindle_data_2023 ]
 SET category_name = 'Arts & Photography'
 WHERE category_name = 'Arts & Photo graphy';
 ```
+
+### Published Date
 
 ```sql
 -- Check for null/missing publish dates
