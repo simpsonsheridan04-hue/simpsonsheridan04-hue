@@ -39,6 +39,8 @@ Additional information about the data set, including it's creator and column des
 SELECT COUNT(*) AS total_rows
 FROM [kindle_data_2023 ];
 ``` 
+<img width="80" height="39" alt="Screenshot_20260417_115441" src="https://github.com/user-attachments/assets/384ec497-047c-4e91-82e2-c572bd9b77a6" />
+<br/><br/>
 
 ```sql
 -- Number of distinct rows
@@ -46,6 +48,8 @@ SELECT COUNT(DISTINCT asin) AS num_distinct_asins
 FROM [kindle_data_2023 ];
 -- no duplicates
 ```
+<img width="130" height="39" alt="Screenshot_20260417_115549" src="https://github.com/user-attachments/assets/0fb06802-dbd4-4c65-828b-f710bde66354" />
+<br/><br/>
 
 ```sql
 -- Check for null values in asin column
@@ -70,6 +74,8 @@ WHERE asin = ‘’;
 SELECT COUNT(DISTINCT title) AS distinct_titles
 FROM [kindle_data_2023 ];
 ```
+<img width="97" height="39" alt="Screenshot_20260417_115915" src="https://github.com/user-attachments/assets/c355dc10-40c7-49aa-995a-3911056d396e" />
+<br/><br/>
 
 ```sql
 -- Investigate duplicated titles
@@ -79,6 +85,8 @@ GROUP BY title
 HAVING COUNT(title) > 1;
 -- seems to be different publications for various titles
 ```
+<img width="786" height="122" alt="Screenshot_20260417_120048" src="https://github.com/user-attachments/assets/2ceb866d-54e1-40be-bfe4-dac404a17863" />
+<br/><br/>
 
 ```sql
 -- Check for null titles
@@ -103,6 +111,8 @@ FROM [kindle_data_2023 ]
 ORDER BY title DESC;
 -- many titles in non-english languages
 ```
+<img width="632" height="122" alt="Screenshot_20260417_120140" src="https://github.com/user-attachments/assets/52980ddd-060a-4675-9072-95a2b974c27d" />
+<br/><br/>
 
 ### Author
 
@@ -121,6 +131,8 @@ FROM [kindle_data_2023 ]
 WHERE author = '';
 -- 423 books missing author data (seems random)
 ```
+<img width="860" height="122" alt="Screenshot_20260417_120304" src="https://github.com/user-attachments/assets/ba402d12-5224-4146-8f4e-4a5438ae00a8" />
+<br/><br/>
 
 ```sql
 -- Noticed 'Not Found' titles:
@@ -128,6 +140,8 @@ SELECT *
 FROM [kindle_data_2023 ]
 WHERE title = 'Not Found';
 ```
+<img width="800" height="61" alt="Screenshot_20260413_124602" src="https://github.com/user-attachments/assets/313e6aa3-eceb-42bd-9db9-e72287ae3c7a" />
+<br/><br/>
 
 ```sql
 -- As almost all data for these books is missing, let's remove them
@@ -147,10 +161,13 @@ WHERE soldBy IS NULL;
 
 ```sql
 -- Check for missing distributors
-SELECT *
+SELECT COUNT(*) AS missing_distributors
 FROM [kindle_data_2023 ]
 WHERE soldBy = '';
+-- 9,231 seemly randomly missing
 ```
+<img width="140" height="39" alt="Screenshot_20260417_120734" src="https://github.com/user-attachments/assets/c3b23d9b-77dc-431b-8ae7-e2f2a8a226be" />
+<br/><br/>
 
 ```sql
 -- Check publisher list
@@ -160,6 +177,8 @@ GROUP BY 1
 ORDER BY 1;
 -- many small errors/repeats in soldBy list
 ```
+<img width="241" height="166" alt="Screenshot_20260413_123959" src="https://github.com/user-attachments/assets/6c2572c6-7429-42ac-92b1-ad87986b560a" />
+<br/><br/>
 
 ```sql
 -- Update HarperCollins
@@ -214,6 +233,16 @@ soldBy = 'Penguin Random House Grupo Editorial' OR
 soldBy = 'Penguin Random House Publisher Services';
 ```
 
+```sql
+-- Re-check publisher list
+SELECT soldBY
+FROM [kindle_data_2023 ]
+GROUP BY 1
+ORDER BY 1;
+```
+<img width="232" height="374" alt="Screenshot_20260417_120928" src="https://github.com/user-attachments/assets/a93528cc-0eab-46c3-ab6e-d9efe0884e46" />
+<br/><br/>
+
 ### Review Amounts and Stars
 ```sql
 -- Check for null reviews
@@ -228,6 +257,8 @@ WHERE stars IS NULL;
 SELECT MAX(stars) AS max_rating, MIN(stars) AS min_rating
 FROM [kindle_data_2023 ];
 ```
+<img width="154" height="38" alt="Screenshot_20260417_121136" src="https://github.com/user-attachments/assets/a84c34cd-c9a6-45e0-9f26-cb259e60212d" />
+<br/><br/>
 
 ```sql
 -- How many books have a 0 (or missing) star review?
@@ -235,6 +266,8 @@ SELECT COUNT(*) AS NA_stars
 FROM [kindle_data_2023 ]
 WHERE stars = 0;
 ```
+<img width="73" height="38" alt="Screenshot_20260417_121211" src="https://github.com/user-attachments/assets/72dce1c2-7fa9-41d8-8aa5-c02e61498805" />
+<br/><br/>
 
 ```sql
 -- Check for null review amounts
@@ -250,6 +283,8 @@ SELECT COUNT(*) AS NA_reviews
 FROM [kindle_data_2023 ]
 WHERE reviews = 0;
 ```
+<img width="86" height="38" alt="Screenshot_20260417_121303" src="https://github.com/user-attachments/assets/d59bcff1-aebf-45e5-963f-4ec9d1f33352" />
+<br/><br/>
 
 ### Price
 
@@ -267,6 +302,8 @@ SELECT COUNT(*) AS NA_prices
 FROM [kindle_data_2023 ]
 WHERE price = 0;
 ```
+<img width="74" height="38" alt="Screenshot_20260417_121335" src="https://github.com/user-attachments/assets/0d20e7d9-782b-4da8-a5d4-edb13e6bb00f" />
+<br/><br/>
 
 ### Kindle Unlimited Status
 
@@ -292,6 +329,8 @@ SELECT isKindleUnlimited
 FROM [kindle_data_2023 ]
 GROUP BY 1;
 ```
+<img width="123" height="60" alt="Screenshot_20260417_121410" src="https://github.com/user-attachments/assets/4e0e9401-1f2a-449d-814a-5e6ea3508cee" />
+<br/><br/>
 
 ### Best Seller Status
 
@@ -317,6 +356,8 @@ SELECT isBestSeller
 FROM [kindle_data_2023 ]
 GROUP BY 1;
 ```
+<img width="86" height="60" alt="Screenshot_20260417_121440" src="https://github.com/user-attachments/assets/abae7040-e8d7-4a4e-a035-eb7020deec6e" />
+<br/><br/>
 
 ### Editor's Pick Status
 
@@ -342,6 +383,8 @@ SELECT isEditorsPick
 FROM [kindle_data_2023 ]
 GROUP BY 1;
 ```
+<img width="96" height="60" alt="Screenshot_20260417_121523" src="https://github.com/user-attachments/assets/dce5250b-63ac-41c9-a4c5-cd5e9756b81a" />
+<br/><br/>
 
 ### Good Read's Choice Status
 
@@ -367,6 +410,8 @@ SELECT isGoodReadsChoice
 FROM [kindle_data_2023 ]
 GROUP BY 1;
 ```
+<img width="132" height="63" alt="Screenshot_20260417_121601" src="https://github.com/user-attachments/assets/7b587d62-3112-4b69-b51e-3210c3a3c520" />
+<br/><br/>
 
 ### Category
 
@@ -392,6 +437,8 @@ SELECT categoryID, category_name
 FROM [kindle_data_2023 ]
 GROUP BY 1;
 ```
+<img width="260" height="164" alt="Screenshot_20260413_123724" src="https://github.com/user-attachments/assets/18de6ecb-412e-4c66-aec1-1a26849a6c6c" />
+<br/><br/>
 
 ```sql
 -- Fix error in 'Arts & Photo graphy'
@@ -399,15 +446,19 @@ UPDATE [kindle_data_2023 ]
 SET category_name = 'Arts & Photography'
 WHERE category_name = 'Arts & Photo graphy';
 ```
+<img width="260" height="40" alt="Screenshot_20260413_123819" src="https://github.com/user-attachments/assets/a4f5896a-9638-45db-8f3d-8ba729ed4c02" />
+<br/><br/>
 
 ### Published Date
 
 ```sql
 -- Check for null/missing publish dates
-SELECT publishedDate
+SELECT COUNT(*) AS missing_dates
 FROM [kindle_data_2023 ]
 WHERE publishedDate IS NULL OR publishedDate = '';
 ```
+<img width="99" height="43" alt="Screenshot_20260417_121826" src="https://github.com/user-attachments/assets/d21fd75e-07c0-4a52-b1a6-c70808ecd4c7" />
+<br/><br/>
 
 ## Observations
 * Different publications (by different publishers) of the same book are included in the data
@@ -429,11 +480,13 @@ WHERE publishedDate IS NULL OR publishedDate = '';
 -- Top 5 most common publishers
 SELECT COUNT(soldBy) AS total_books, soldBY
 FROM [kindle_data_2023 ]
-WHERE soldBY != ''”
+WHERE soldBY != ''
 GROUP BY 2
 ORDER BY 1 DESC
 LIMIT 5;
 ```
+<img width="297" height="127" alt="Screenshot_20260417_121938" src="https://github.com/user-attachments/assets/d9ac9e34-89d1-4dbc-bb07-3f8d06dc60c9" />
+<br/><br/>
 
 ```sql
 -- Top 5 least common publishers
@@ -442,8 +495,10 @@ FROM [kindle_data_2023 ]
 GROUP BY 2
 ORDER BY 1
 LIMIT 5;
--- Amazon.com Services LLC is the most common publisher and RCS MediaGroup S.p.A is the least common
+-- Amazon.com is the most common publisher and RCS MediaGroup S.p.A is the least common
 ```
+<img width="223" height="127" alt="Screenshot_20260417_122011" src="https://github.com/user-attachments/assets/608fca5f-279c-40e0-af5e-6f672ee9dae2" />
+<br/><br/>
 
 ### Pricing
 
@@ -453,6 +508,8 @@ SELECT ROUND(AVG(price), 2) AS average_book_price
 FROM [kindle_data_2023 ]
 WHERE price != 0;
 ```
+<img width="133" height="40" alt="Screenshot_20260417_122322" src="https://github.com/user-attachments/assets/d23d617c-1c65-484d-822d-601cea31243b" />
+<br/><br/>
 
 ```sql
 -- Most expensive books
@@ -462,6 +519,8 @@ ORDER BY price DESC
 LIMIT 10;
 -- educational textbooks have the highest prices and are all sold by Amazon
 ```
+<img width="996" height="232" alt="Screenshot_20260417_122400" src="https://github.com/user-attachments/assets/0a3b7a27-dbb6-41c5-81b2-58f2d415e4b9" />
+<br/><br/>
 
 ```sql
 -- Least expensive books
@@ -472,6 +531,8 @@ ORDER BY price
 LIMIT 5;
 -- educational textbooks also have textbooks have the lowest prices and are all sold by Amazon
 ```
+<img width="1010" height="124" alt="Screenshot_20260417_122930" src="https://github.com/user-attachments/assets/088664b3-c9e3-436d-a7ad-4541a0d8c265" />
+<br/><br/>
 
 ```sql
 -- Which category has the most expensive books on average?
@@ -482,6 +543,8 @@ ORDER BY AVG(price) DESC
 LIMIT 5;
 -- law books have the highest average price
 ```
+<img width="274" height="124" alt="Screenshot_20260417_123011" src="https://github.com/user-attachments/assets/653e8d43-9987-4988-ab3f-8dd221b0840e" />
+<br/><br/>
 
 ```sql
 -- Which category has the least expensive books on average?
@@ -493,6 +556,8 @@ ORDER BY AVG(price)
 LIMIT 5;
 -- romance books have the lowest average price
 ```
+<img width="267" height="124" alt="Screenshot_20260417_123042" src="https://github.com/user-attachments/assets/e88037f9-10d8-480e-b645-11a170f256ed" />
+<br/><br/>
 
 ```sql
 -- Most/least common category
@@ -502,6 +567,10 @@ GROUP BY category_name
 ORDER BY 2 DESC;
 -- Mystery, Thriller, & Suspense is the most common category and comics is the least common category
 ```
+<img width="267" height="124" alt="Screenshot_20260417_123120" src="https://github.com/user-attachments/assets/8e0909ae-46da-47bd-af0d-1bfd1866d47b" />
+<br/><br/>
+<img width="267" height="102" alt="Screenshot_20260417_123151" src="https://github.com/user-attachments/assets/3285c1b3-b372-414c-84ad-10d7ecd6effd" />
+<br/><br/>
 
 ```sql
 -- Average price of high rated books
@@ -509,6 +578,8 @@ SELECT ROUND(AVG(price), 2) AS average_price_high
 FROM [kindle_data_2023 ]
 WHERE stars >= 4 AND price != 0;
 ```
+<img width="129" height="42" alt="Screenshot_20260417_123544" src="https://github.com/user-attachments/assets/4910f1bc-fb6d-4b17-8090-202c6ab7bfad" />
+<br/><br/>
 
 ```sql
 -- Average price of low rated books
@@ -528,6 +599,8 @@ SELECT ROUND(AVG(price),2) AS average_price_low
 FROM rating
 WHERE review_category = 'Below Average' OR review_category = 'Poor' AND price != 0;
 ```
+<img width="129" height="42" alt="Screenshot_20260417_123629" src="https://github.com/user-attachments/assets/4d32fd8a-bba3-49cd-8b9d-5e7bc29c8b83" />
+<br/><br/>
 
 ```sql
 -- Editor’s pick average price
@@ -535,12 +608,17 @@ SELECT ROUND(AVG(price), 2) AS average_ep_price
 FROM [kindle_data_2023 ]
 WHERE isEditorsPick = 'True' AND price != 0;
 ```
+<img width="118" height="42" alt="Screenshot_20260417_123749" src="https://github.com/user-attachments/assets/1656494d-6c61-4491-a2d9-6f7355a03ac3" />
+<br/><br/>
+
 ```sql
 -- Best seller average price
 SELECT ROUND(AVG(price), 2) AS average_bs_price
 FROM [kindle_data_2023 ]
 WHERE isBestSeller = 'True' AND price != 0;
 ```
+<img width="118" height="42" alt="Screenshot_20260417_123813" src="https://github.com/user-attachments/assets/dd063943-66cc-4606-8268-bceec407bb22" />
+<br/><br/>
 
 ```sql
 -- Good Read’s Choice average price
@@ -548,6 +626,8 @@ SELECT ROUND(AVG(price), 2) AS average_gr_price
 FROM [kindle_data_2023 ]
 WHERE isGoodReadsChoice = 'True' AND price != 0;
 ```
+<img width="118" height="42" alt="Screenshot_20260417_123833" src="https://github.com/user-attachments/assets/7241d387-ee67-4479-b3a8-77e1573ede67" />
+<br/><br/>
 
 ```sql
 -- Average price per distributor
@@ -558,6 +638,8 @@ GROUP BY soldBy
 ORDER BY average_dist_price DESC
 LIMIT 5;
 ```
+<img width="288" height="124" alt="Screenshot_20260417_123957" src="https://github.com/user-attachments/assets/c871e220-276c-403c-9fb8-3d717851dd93" />
+<br/><br/>
 
 ### Author Analysis
 
@@ -571,6 +653,8 @@ ORDER BY books_per_author DESC
 LIMIT 10;
 -- includes different language prints and different edition prints
 ```
+<img width="260" height="230" alt="Screenshot_20260417_124221" src="https://github.com/user-attachments/assets/a9bd7b5b-ca30-44a9-9aed-31bfdfd0e5fd" />
+<br/><br/>
 
 ```sql
 -- How many authors have 5 star books?
@@ -581,6 +665,8 @@ GROUP BY author
 ORDER BY num_top_rated_books DESC;
 --4,614 authors have 5 star books, Olly Richards has the most 5 star books
 ```
+<img width="532" height="159" alt="Screenshot_20260417_124316" src="https://github.com/user-attachments/assets/3390e95c-42a6-466e-aad3-ec883be57248" />
+<br/><br/>
 
 ```sql
 -- Olly Richards 5 star books
@@ -588,6 +674,8 @@ SELECT title, author
 FROM [kindle_data_2023 ]
 WHERE author = 'Olly Richards' AND stars = 5;
 ```
+<img width="693" height="188" alt="Screenshot_20260417_124346" src="https://github.com/user-attachments/assets/a644f81f-c450-4829-9f28-3778952c7386" />
+<br/><br/>
 
 ### Kindle Unlimited (KU) Analysis
 
@@ -597,6 +685,8 @@ SELECT COUNT(*) AS total_available_KU_books
 FROM [kindle_data_2023 ]
 WHERE isKindleUnlimited = 'True';
 ```
+<img width="166" height="42" alt="Screenshot_20260417_124421" src="https://github.com/user-attachments/assets/e90ad070-acb5-4d8c-aa08-b16e98245862" />
+<br/><br/>
 
 ```sql
 -- Which publishers prefer KU?
@@ -606,6 +696,8 @@ WHERE isKindleUnlimited = 'True' AND soldBY != ''
 GROUP BY soldBy
 ORDER BY num_books_KU DESC;
 ```
+<img width="326" height="271" alt="Screenshot_20260417_124445" src="https://github.com/user-attachments/assets/19d96c1f-1d98-4454-85dc-44c0d6812f69" />
+<br/><br/>
 
 ```sql
 -- What are the most/least common categories in KU?
@@ -615,6 +707,10 @@ WHERE isKindleUnlimited = 'True'
 GROUP BY category_name
 ORDER BY KUbooks_in_category DESC;
 ```
+<img width="326" height="124" alt="Screenshot_20260417_124521" src="https://github.com/user-attachments/assets/65bc7b3e-a43b-4da6-9bc8-4d02327f3f57" />
+<br/><br/>
+<img width="326" height="104" alt="Screenshot_20260417_124559" src="https://github.com/user-attachments/assets/628a0283-da7f-4b41-b3f3-5b2dc8f04ab1" />
+<br/><br/>
 
 ```sql
 -- KU price vs Non KU price
@@ -626,6 +722,10 @@ SELECT ROUND(AVG(price), 2) AS average_nonKU_price
 FROM [kindle_data_2023 ]
 WHERE isKindleUnlimited = 'False' and price != 0;
 ```
+<img width="120" height="42" alt="Screenshot_20260417_124627" src="https://github.com/user-attachments/assets/738fcb3e-293a-4c55-8baa-38c102797e48" />
+<br/><br/>
+<img width="144" height="42" alt="Screenshot_20260417_124702" src="https://github.com/user-attachments/assets/a2ac8160-3603-4c21-bebf-cd458dd678d8" />
+<br/><br/>
 
 ```sql
 -- Are top rated books on KU?
@@ -646,6 +746,8 @@ FROM rating
 WHERE review_category = 'Excellent' OR review_category = 'Good'
 GROUP BY isKindleUnlimited;
 ```
+<img width="181" height="63" alt="Screenshot_20260417_124829" src="https://github.com/user-attachments/assets/b07a16b4-d7f3-4653-aaa2-edefe2588cd9" />
+<br/><br/>
 
 ```sql
 --Are low rated books on KU?
@@ -666,6 +768,8 @@ FROM rating
 WHERE review_category = 'Below Average' OR review_category = 'Poor'
 GROUP BY isKindleUnlimited;
 ```
+<img width="181" height="63" alt="Screenshot_20260417_124905" src="https://github.com/user-attachments/assets/c0266b80-b2b0-4771-9d15-202b5ecc6625" />
+<br/><br/>
 
 ```sql
 -- Are average rated books on KU?
@@ -686,6 +790,8 @@ FROM rating
 WHERE review_category = 'Average'
 GROUP BY isKindleUnlimited;
 ```
+<img width="181" height="63" alt="Screenshot_20260417_124930" src="https://github.com/user-attachments/assets/9b150c5a-83cf-41c2-a39d-30b59bb09e8b" />
+<br/><br/>
 
 ```sql
 -- Kindle Unlimited vs author
@@ -696,6 +802,8 @@ GROUP BY author
 ORDER BY total_KU_books DESC
 LIMIT 10;
 ```
+<img width="229" height="229" alt="Screenshot_20260417_124958" src="https://github.com/user-attachments/assets/cf68dbd7-3a91-4e8b-a621-69e66ed7091d" />
+<br/><br/>
 
 ```sql
 -- Are editor's choice books on KU?
@@ -704,6 +812,8 @@ FROM [kindle_data_2023 ]
 WHERE isEditorsPick = 'True'
 GROUP BY isKindleUnlimited;
 ```
+<img width="182" height="61" alt="Screenshot_20260417_125041" src="https://github.com/user-attachments/assets/a5e99ddc-7b90-4eac-b851-8d588e228a28" />
+<br/><br/>
 
 ```sql
 -- Are best seller books on KU?
@@ -712,6 +822,8 @@ FROM [kindle_data_2023 ]
 WHERE isBestSeller = 'True'
 GROUP BY isKindleUnlimited;
 ```
+<img width="182" height="61" alt="Screenshot_20260417_125114" src="https://github.com/user-attachments/assets/5f898cea-98e8-481c-8449-21106daa27bb" />
+<br/><br/>
 
 ```sql
 -- Are good read choices on KU?
@@ -720,6 +832,8 @@ FROM [kindle_data_2023 ]
 WHERE isGoodReadsChoice = 'True'
 GROUP BY isKindleUnlimited;
 ```
+<img width="182" height="61" alt="Screenshot_20260417_125141" src="https://github.com/user-attachments/assets/99288de3-ac39-454a-be1e-0129bd19761a" />
+<br/><br/>
 
 ### Book Ratings
 
@@ -732,6 +846,8 @@ GROUP BY soldBy
 ORDER BY average_dist_stars DESC
 LIMIT 10;
 ```
+<img width="343" height="229" alt="Screenshot_20260417_125214" src="https://github.com/user-attachments/assets/b1daeb86-44d8-4b03-9f1c-3f87caf93da6" />
+<br/><br/>
 
 ```sql
 -- Average star amount of editors pick
@@ -740,6 +856,8 @@ FROM [kindle_data_2023 ]
 WHERE stars != 0
 GROUP BY isEditorsPick;
 ```
+<img width="199" height="60" alt="Screenshot_20260417_125248" src="https://github.com/user-attachments/assets/1e8ed269-3ead-44c0-b7ca-22d98da84af9" />
+<br/><br/>
 
 ```sql
 -- Average star amount of good reads
@@ -748,6 +866,8 @@ FROM [kindle_data_2023 ]
 WHERE stars != 0
 GROUP BY isGoodReadsChoice;
 ```
+<img width="234" height="60" alt="Screenshot_20260417_125313" src="https://github.com/user-attachments/assets/549d6360-e0dc-4ed5-919c-8149fe6b346e" />
+<br/><br/>
 
 ```sql
 -- Average star amount of best seller
@@ -756,6 +876,8 @@ FROM [kindle_data_2023 ]
 WHERE stars != 0
 GROUP BY isBestSeller;
 ```
+<img width="192" height="60" alt="Screenshot_20260417_125341" src="https://github.com/user-attachments/assets/4c8159b5-8a4c-4eaf-a7dc-13b280d2ed5c" />
+<br/><br/>
 
 ## Conclusions
 The average KU book price is 30% of a the average non-book price
@@ -767,5 +889,6 @@ Best Sellers are more likely to be available on KU than Editor’s Pick and Good
 
 ## Visuals
 
-<img width="999" height="799" alt="Dashboard 1" src="https://github.com/user-attachments/assets/57ac1456-9e9c-417f-a9a7-ac405306d0b7" />
+<img width="999" height="799" alt="Dashboard 1" src="https://github.com/user-attachments/assets/6f05e925-2765-49db-a521-f77fb4fec99e" />
+
 
