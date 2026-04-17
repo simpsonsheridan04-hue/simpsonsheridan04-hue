@@ -7,7 +7,7 @@ I'm Sheridan, a data-driven professional with a background in program management
 - 🩵 Passionate about using data analytics to drive growth and support informed decision-making
 - 🌱 Interested in leveraging data to uncover insights and optimize performance
 - 📫 How to reach me: simpsonsheridan04@gmail.com
-- ⚡ Fun fact: I have a bachelors in Mathemtaical Economics
+- ⚡ Fun fact: I have a bachelors in Mathematical Economics
 
 ### Check out some of my personal projects: 
 
