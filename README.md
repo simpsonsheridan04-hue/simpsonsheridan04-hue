@@ -13,7 +13,7 @@ I'm Sheridan, a data-driven professional with a background in program management
 
 | Project Name | Platform | Link |
 | ------------ | -------- |----- |
-| Marvel Movie Analysis | R | [marvel_movie_analysis](https://github.com/simpsonsheridan04-hue/simpsonsheridan04-hue/blob/main/R_Portfolio_Marvel.ipynb) |
+| Marvel Movie Analysis | R | [marvel_movie_analysis](https://github.com/simpsonsheridan04-hue/marvel_movie_analysis) |
 | Animal Crossing Villagers | Python | [acnh_villager_analysis](https://github.com/simpsonsheridan04-hue/ACNH_villagers/settings)|
 | Amazon Kindle Book Analysis | SQL | [book_analysis](https://github.com/simpsonsheridan04-hue/simpsonsheridan04-hue/blob/main/amazon_books_SQL.md) |
 | Stardew Valley Crop Analysis | Excel | [crop_analysis](https://github.com/simpsonsheridan04-hue/stardew_crops)
